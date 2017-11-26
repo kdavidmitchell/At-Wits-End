@@ -7,9 +7,11 @@ public class DialogueManager : MonoBehaviour
 {
 
     private Queue<string> sentences;
+    private int lineNumber = 0;
 
     public Text dialogueText;
     public Animator animator;
+    public ActManager actManager;
 
 	// Use this for initialization
 	void Start ()
@@ -22,6 +24,7 @@ public class DialogueManager : MonoBehaviour
         animator.SetBool("isOpen", true);
 
         sentences.Clear();
+        lineNumber = 0;
 
         foreach (string sentence in lineManager.sentences)
         {
@@ -40,14 +43,39 @@ public class DialogueManager : MonoBehaviour
         }
 
         string sentence = sentences.Dequeue();
+
+        if (actManager.GetSpeaker(lineNumber, actManager.gameLM) == "Alice" && actManager.displayedTitleCard)
+        {
+            dialogueText.color = Color.red;
+            dialogueText.fontStyle = FontStyle.Normal;
+        } else if (actManager.GetSpeaker(lineNumber, actManager.gameLM) == "Sam" && actManager.displayedTitleCard)
+        {
+            dialogueText.color = Color.blue;
+            dialogueText.fontStyle = FontStyle.Normal;
+        } else if (actManager.GetSpeaker(lineNumber, actManager.gameLM) == "Narrator" && actManager.displayedTitleCard)
+        {
+            dialogueText.color = Color.black;
+            dialogueText.fontStyle = FontStyle.Italic;
+        }
+
         dialogueText.text = sentence;
+        actManager.UpdateStrangeAndSuspicionValues(lineNumber, actManager.gameLM);
+        lineNumber++;
     }
 
     void EndDialogue()
     {
         Debug.Log("End of dialogue.");
+        if (!actManager.displayedTitleCard)
+        {
+            actManager.displayedTitleCard = true;
+            actManager.DisableTitleCard();
+            actManager.EnableGameCanvas();
+        }
         animator.SetBool("isOpen", false);
     }
+
+
 	
 	
 }

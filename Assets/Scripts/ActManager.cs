@@ -55,9 +55,6 @@ public class ActManager : MonoBehaviour
 	{
 		strangeValue += lineManager.strangeValues[lineNumber];
 		suspicionValue += lineManager.suspicionValues[lineNumber];
-
-		Debug.Log(strangeValue);
-		Debug.Log(suspicionValue);
 	}
 
 	public string GetSpeaker(int lineNumber, LineManager lineManager)

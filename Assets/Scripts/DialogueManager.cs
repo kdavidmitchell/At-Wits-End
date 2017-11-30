@@ -74,8 +74,4 @@ public class DialogueManager : MonoBehaviour
         }
         animator.SetBool("isOpen", false);
     }
-
-
-	
-	
 }

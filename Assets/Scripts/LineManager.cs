@@ -20,10 +20,6 @@ public class LineManager : MonoBehaviour
             lines[i].SpeakerName = speakerNames[i];
             lines[i].Strange = strangeValues[i];
             lines[i].Suspicion = suspicionValues[i];
-
-            //Debug.Log(lines[i].SpeakerName + ": " + lines[i].Sentence);
-            //Debug.Log("Strangeness: " + lines[i].Strange);
-            //Debug.Log("Suspicion: " + lines[i].Suspicion);
         }
 	}
 	

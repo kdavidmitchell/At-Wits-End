@@ -12,11 +12,13 @@ public class DialogueManager : MonoBehaviour
     public Text dialogueText;
     public Animator animator;
     public ActManager actManager;
+    public RecordingManager recordingManager;
 
 	// Use this for initialization
 	void Start ()
     {
-        sentences = new Queue<string>();	
+        sentences = new Queue<string>();
+        recordingManager = GameObject.Find("ActManager").GetComponent<RecordingManager>();	
 	}
 
     public void StartDialogue(LineManager lineManager)
@@ -41,6 +43,8 @@ public class DialogueManager : MonoBehaviour
             EndDialogue();
             return;
         }
+
+        CheckCurrentLineToEnableRecordingUI();
 
         string sentence = sentences.Dequeue();
 
@@ -73,5 +77,13 @@ public class DialogueManager : MonoBehaviour
             actManager.EnableGameCanvas();
         }
         animator.SetBool("isOpen", false);
+    }
+
+    public void CheckCurrentLineToEnableRecordingUI()
+    {
+        if (lineNumber == 22)
+        {
+            recordingManager.EnableRecordingUI();
+        }
     }
 }

@@ -61,4 +61,6 @@ public class ActManager : MonoBehaviour
 	{
 		return lineManager.speakerNames[lineNumber];
 	}
+
+	
 }

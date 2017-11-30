@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class RecordingManager : MonoBehaviour 
 {
-
 	public GameObject recordingUI;
 	public Image filmMeterFill;
 	public Button recordButton;
@@ -13,20 +12,30 @@ public class RecordingManager : MonoBehaviour
 	public Image dangerMeterFill;
 	public Image weirdMeter;
 
+	public bool isRecording = false;
+
 	// Use this for initialization
 	void Start () 
 	{
-		recordingUI.SetActive(false);
+		filmMeterFill = filmMeterFill.GetComponent<Image>();
+		recordButton = recordButton.GetComponent<Button>();
+		stopButton = recordButton.GetComponent<Button>();
+		dangerMeterFill = dangerMeterFill.GetComponent<Image>();
+		weirdMeter = weirdMeter.GetComponent<Image>();
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		
+		if (isRecording)
+		{
+			DisableRecordAndEnableStop();
+		}
 	}
 
-	public void EnableRecordingUI()
+	private void DisableRecordAndEnableStop()
 	{
-		recordingUI.SetActive(true);
+		recordButton.enabled = false;
+		stopButton.enabled = true;
 	}
 }

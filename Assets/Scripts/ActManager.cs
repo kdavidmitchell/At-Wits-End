@@ -10,6 +10,8 @@ public class ActManager : MonoBehaviour
 		//2. A linemanager reference that controls the flow of dialogue
 		//3. UI for dialogue box, portraits, and background
 	
+	private RecordingManager recordingManager;
+
 	public bool displayedTitleCard = false;
 	
 	public Canvas titleCard;
@@ -22,10 +24,12 @@ public class ActManager : MonoBehaviour
 
 	public float strangeValue = 0;
 	public float suspicionValue = 0;
+	public Animator animator;
 
 	// Use this for initialization
 	void Start () 
-	{
+	{	
+		recordingManager = GetComponent<RecordingManager>();
 		gameCanvas.enabled = false;
 		titleCardDM.StartDialogue(titleCardLM);
 	}
@@ -60,6 +64,11 @@ public class ActManager : MonoBehaviour
 	public string GetSpeaker(int lineNumber, LineManager lineManager)
 	{
 		return lineManager.speakerNames[lineNumber];
+	}
+
+	public void EnableRecordingUI()
+	{
+		recordingManager.recordingUI.SetActive(true);
 	}
 
 	

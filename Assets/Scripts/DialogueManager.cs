@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class DialogueManager : MonoBehaviour
 {
 
+    private int currentAct = 1;
+
     private Queue<string> sentences;
     private int lineNumber = 0;
 
@@ -81,9 +83,10 @@ public class DialogueManager : MonoBehaviour
 
     public void CheckCurrentLineToEnableRecordingUI()
     {
-        if (lineNumber == 22)
+        if (lineNumber == 22 && currentAct == 1)
         {
-            recordingManager.EnableRecordingUI();
+            actManager.animator.SetBool("isOpen", true);
+            actManager.EnableRecordingUI();
         }
     }
 }

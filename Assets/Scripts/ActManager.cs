@@ -54,6 +54,7 @@ public class ActManager : MonoBehaviour
 	public void EnableGameCanvas()
 	{
 		gameCanvas.enabled = true;
+		gameDM.StartDialogue (gameLM);
 	}
 
 	public void UpdateStrangeAndSuspicionValues(int lineNumber, LineManager lineManager)

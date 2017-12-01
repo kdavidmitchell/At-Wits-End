@@ -86,7 +86,7 @@ public class DialogueManager : MonoBehaviour
             actManager.DisableTitleCard();
             actManager.EnableGameCanvas();
         }
-        animator.SetBool("isOpen", false);
+        //animator.SetBool("isOpen", false);
     }
 
     public void CheckCurrentLineToEnableRecordingUI()

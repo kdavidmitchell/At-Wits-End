@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class DialogueManager : MonoBehaviour
 {
 
-    private int currentAct = 1;
+    public int currentAct;
 
     private Queue<string> sentences;
     private int lineNumber = 0;
@@ -47,6 +47,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         CheckCurrentLineToEnableRecordingUI();
+        CheckCurrentLineToShowPortrait();
 
         string sentence = sentences.Dequeue();
 
@@ -65,7 +66,14 @@ public class DialogueManager : MonoBehaviour
         }
 
         dialogueText.text = sentence;
+        
         actManager.UpdateStrangeAndSuspicionValues(lineNumber, actManager.gameLM);
+        
+        if (recordingManager.isRecording)
+        {
+            recordingManager.UpdateMeters();
+        }
+        
         lineNumber++;
     }
 
@@ -85,8 +93,16 @@ public class DialogueManager : MonoBehaviour
     {
         if (lineNumber == 22 && currentAct == 1)
         {
-            actManager.animator.SetBool("isOpen", true);
+            actManager.animatorRecordingUI.SetBool("isOpen", true);
             actManager.EnableRecordingUI();
+        }
+    }
+
+    public void CheckCurrentLineToShowPortrait()
+    {
+        if (lineNumber == 6 && currentAct == 1 && actManager.displayedTitleCard)
+        {
+            actManager.animatorNPCPortrait.SetBool("isOpen", true);
         }
     }
 }

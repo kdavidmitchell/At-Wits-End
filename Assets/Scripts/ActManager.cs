@@ -10,7 +10,7 @@ public class ActManager : MonoBehaviour
 		//2. A linemanager reference that controls the flow of dialogue
 		//3. UI for dialogue box, portraits, and background
 	
-	private RecordingManager recordingManager;
+	public RecordingManager recordingManager;
 
 	public bool displayedTitleCard = false;
 	
@@ -24,7 +24,8 @@ public class ActManager : MonoBehaviour
 
 	public float strangeValue = 0;
 	public float suspicionValue = 0;
-	public Animator animator;
+	public Animator animatorRecordingUI;
+	public Animator animatorNPCPortrait;
 
 	// Use this for initialization
 	void Start () 
@@ -57,8 +58,8 @@ public class ActManager : MonoBehaviour
 
 	public void UpdateStrangeAndSuspicionValues(int lineNumber, LineManager lineManager)
 	{
-		strangeValue += lineManager.strangeValues[lineNumber];
-		suspicionValue += lineManager.suspicionValues[lineNumber];
+		strangeValue = lineManager.strangeValues[lineNumber];
+		suspicionValue = lineManager.suspicionValues[lineNumber];
 	}
 
 	public string GetSpeaker(int lineNumber, LineManager lineManager)
@@ -70,6 +71,4 @@ public class ActManager : MonoBehaviour
 	{
 		recordingManager.recordingUI.SetActive(true);
 	}
-
-	
 }

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class RecordingManager : MonoBehaviour 
 {
 	public GameObject recordingUI;
+	public ActManager actManager;
 	public Image filmMeterFill;
 	public Button recordButton;
 	public Button stopButton;
@@ -19,7 +20,7 @@ public class RecordingManager : MonoBehaviour
 	{
 		filmMeterFill = filmMeterFill.GetComponent<Image>();
 		recordButton = recordButton.GetComponent<Button>();
-		stopButton = recordButton.GetComponent<Button>();
+		stopButton = stopButton.GetComponent<Button>();
 		dangerMeterFill = dangerMeterFill.GetComponent<Image>();
 		weirdMeter = weirdMeter.GetComponent<Image>();
 	}
@@ -29,13 +30,27 @@ public class RecordingManager : MonoBehaviour
 	{
 		if (isRecording)
 		{
-			DisableRecordAndEnableStop();
+			if (filmMeterFill.fillAmount <= 0)
+			{
+				isRecording = false;
+			}
+			filmMeterFill.fillAmount -= 0.001f;
+		} else 
+		{
+			stopButton.interactable = false;
+			recordButton.interactable = true;
 		}
 	}
 
-	private void DisableRecordAndEnableStop()
+	public void DisableRecordAndEnableStop()
 	{
-		recordButton.enabled = false;
-		stopButton.enabled = true;
+		recordButton.interactable = false;
+		stopButton.interactable = true;
+	}
+
+	public void UpdateMeters()
+	{
+		dangerMeterFill.fillAmount += (actManager.suspicionValue / 200f);
+		weirdMeter.fillAmount += (actManager.strangeValue / 200f);
 	}
 }

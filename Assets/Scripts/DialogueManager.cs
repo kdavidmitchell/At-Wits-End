@@ -97,6 +97,8 @@ public class DialogueManager : MonoBehaviour
             recordingManager.UpdateMeters();
         }
         
+        CheckIfLastLine();
+        
         lineNumber++;
     }
 
@@ -110,6 +112,33 @@ public class DialogueManager : MonoBehaviour
             actManager.EnableGameCanvas();
         }
         //animator.SetBool("isOpen", false);
+    }
+
+    public void CheckIfLastLine()
+    {
+        if (currentAct == 1)
+        {
+            if (actManager.gameDM.lineNumber == 46)
+            {
+                LoadScene.LoadSceneOnLastLine(2);
+            }
+        }
+
+        if (currentAct == 2)
+        {
+            if (actManager.gameDM.lineNumber == 64)
+            {
+                LoadScene.LoadSceneOnLastLine(3);
+            }
+        }
+
+        if (currentAct == 3)
+        {
+            if (actManager.gameDM.lineNumber == 69)
+            {
+                LoadScene.LoadSceneOnLastLine(4);
+            }
+        }
     }
 
     public void CheckCurrentLineToEnableRecordingUI()
@@ -141,6 +170,21 @@ public class DialogueManager : MonoBehaviour
             {
                 actManager.animatorRecordingUI.SetBool("isOpen", true);
                 actManager.EnableRecordingUI();
+            }
+        }
+
+        //Act 4 recording event
+        if (currentAct == 4)
+        {
+            if (actManager.gameDM.lineNumber == 87)
+            {
+                actManager.animatorRecordingUI.SetBool("isOpen", true);
+                actManager.EnableRecordingUI();
+            }
+
+            if (actManager.gameDM.lineNumber == 133)
+            {
+                actManager.animatorRecordingUI.SetBool("isOpen", false);
             }
         }
     }
@@ -204,6 +248,40 @@ public class DialogueManager : MonoBehaviour
             if (actManager.gameDM.lineNumber == 46)
             {
                 actManager.UpdateBackground(4);
+                actManager.UpdatePortraitAndName(5);
+            }
+        }
+
+        if (currentAct == 4)
+        {
+            if (actManager.titleCardDM.lineNumber == 3)
+            {
+                actManager.UpdateBackground(2);
+                actManager.UpdatePortraitAndName(3);
+            }
+
+            if (actManager.titleCardDM.lineNumber == 7)
+            {
+                actManager.UpdateBackground(4);
+            }
+
+            if (actManager.gameDM.lineNumber == 110)
+            {
+                actManager.UpdatePortraitAndName(5);
+            }
+
+            if (actManager.gameDM.lineNumber == 117)
+            {
+                actManager.UpdatePortraitAndName(2);
+            }
+
+            if (actManager.gameDM.lineNumber == 120)
+            {
+                actManager.UpdatePortraitAndName(3);
+            }
+
+            if (actManager.gameDM.lineNumber == 127)
+            {
                 actManager.UpdatePortraitAndName(5);
             }
         }
@@ -353,6 +431,49 @@ public class DialogueManager : MonoBehaviour
             if (actManager.titleCardDM.lineNumber == 21)
             {
                 actManager.displayedTitleCard = true;
+                actManager.EnableGameCanvas();
+                actManager.DisableTitleCard();
+                actManager.animatorNPCPortrait.SetBool("isOpen", true);
+            }
+        }
+
+        if (currentAct == 4)
+        {
+            if (actManager.titleCardDM.lineNumber == 3)
+            {
+                actManager.displayedTitleCard = true;
+                paused = true;
+                DisplayNextSentence();
+                paused = false;
+                actManager.titleCardDM.lineNumber++;
+                actManager.EnableGameCanvas();
+                actManager.gameDM.StartDialogue(actManager.gameLM);
+                actManager.DisableTitleCard();
+                actManager.animatorNPCPortrait.SetBool("isOpen", true);
+            }
+
+            if (actManager.gameDM.lineNumber == 60)
+            {
+                actManager.displayedTitleCard = false;
+                paused = true;
+                DisplayNextSentence();
+                paused = false;
+                actManager.gameDM.lineNumber++;
+                actManager.EnableTitleCard();
+                actManager.UpdateTitleCardHeader(4);
+                actManager.titleCardDescription.color = Color.white;
+                actManager.titleCardDescription.fontStyle = FontStyle.Normal;
+                actManager.animatorNPCPortrait.SetBool("isOpen", false);
+                actManager.DisableGameCanvas();
+            }
+
+            if (actManager.titleCardDM.lineNumber == 7)
+            {
+                actManager.displayedTitleCard = true;
+                paused = true;
+                DisplayNextSentence();
+                paused = false;
+                actManager.titleCardDM.lineNumber++;
                 actManager.EnableGameCanvas();
                 actManager.DisableTitleCard();
                 actManager.animatorNPCPortrait.SetBool("isOpen", true);

@@ -17,6 +17,8 @@ public class DialogueManager : MonoBehaviour
     public ActManager actManager;
     public RecordingManager recordingManager;
 
+    public LoadScene loader;
+
 	// Use this for initialization
 	void Awake ()
     {
@@ -120,7 +122,7 @@ public class DialogueManager : MonoBehaviour
         {
             if (actManager.gameDM.lineNumber == 46)
             {
-                LoadScene.LoadSceneOnLastLine(2);
+                loader.LoadSceneOnLastLine();
             }
         }
 
@@ -128,7 +130,7 @@ public class DialogueManager : MonoBehaviour
         {
             if (actManager.gameDM.lineNumber == 64)
             {
-                LoadScene.LoadSceneOnLastLine(3);
+                loader.LoadSceneOnLastLine();
             }
         }
 
@@ -136,7 +138,7 @@ public class DialogueManager : MonoBehaviour
         {
             if (actManager.gameDM.lineNumber == 69)
             {
-                LoadScene.LoadSceneOnLastLine(4);
+                loader.LoadSceneOnLastLine();
             }
         }
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ActManager : MonoBehaviour 
 {
@@ -28,6 +29,7 @@ public class ActManager : MonoBehaviour
 
 	public float strangeValue = 0;
 	public float suspicionValue = 0;
+	public float totalStrange = 0;
 	
 	public Animator animatorRecordingUI;
 	public Animator animatorNPCPortrait;
@@ -35,12 +37,34 @@ public class ActManager : MonoBehaviour
 	public Text portraitName;
 	public Image background;
 
+	private Image burnButton;
+	private Image keepButton;
+	private Text burnText;
+	private Text keepText;
+
+	void Awake()
+	{
+		GameInformation.TotalStrange = 399;
+	}
+
 	// Use this for initialization
 	void Start () 
 	{	
 		recordingManager = GetComponent<RecordingManager>();
 		gameCanvas.enabled = false;
 		titleCardDM.StartDialogue(titleCardLM);
+
+		if (gameDM.currentAct == 5)
+		{
+			burnButton = GameObject.Find("BurnButton").GetComponent<Image>();
+			keepButton = GameObject.Find("KeepButton").GetComponent<Image>();
+			burnText = GameObject.Find("BurnText").GetComponent<Text>();
+			keepText = GameObject.Find("KeepText").GetComponent<Text>();
+			burnButton.enabled = false;
+			keepButton.enabled = false;
+			burnText.enabled = false;
+			keepText.enabled = false;
+		}
 	}
 	
 	// Update is called once per frame
@@ -118,6 +142,19 @@ public class ActManager : MonoBehaviour
 		//0 = WIT’S END MOVIEHOUSE - 10AM
 		//1 = THE OLD MARITIME MUSEUM - 11PM
 		titleCardHeader.text = hm.headers[headerNumber];
+	}
+
+	public void LoseGame()
+	{
+		SceneManager.LoadScene(6);
+	}
+
+	public void EnableLastChoiceButtons()
+	{
+		burnButton.enabled = true;
+		keepButton.enabled = true;
+		burnText.enabled = true;
+		keepText.enabled = true;
 	}
 
 }

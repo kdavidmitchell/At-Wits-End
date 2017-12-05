@@ -33,6 +33,20 @@ public class DialogueManager : MonoBehaviour
 
         sentences.Clear();
 
+        if (currentAct == 5)
+        {
+            if (GameInformation.TotalStrange > 600)
+            {
+                actManager.titleCardLM.sentences[7] = "What you were able to capture is extremely disturbing… On reviewing it all, it’s probably the most convincing argument you can make. You only hope it’s enough.";
+            } else if (GameInformation.TotalStrange <= 600 && GameInformation.TotalStrange > 400)
+            {
+                actManager.titleCardLM.sentences[7] = "On reviewing everything you captured, you realize that some of those situations were pretty hairy. There wasn’t possibly anything you could have done to get any more… was there? It’s a fairly compelling case. You hope others will think so too.";
+            } else 
+            {
+                actManager.titleCardLM.sentences[7] = "These past few days have been harrowing, to say the least. On review, what you’ve captured doesn’t really inspire much confidence… You’re going to just have to hope that someone takes a chance on you.";  
+            }
+        }
+
         foreach (string sentence in lineManager.sentences)
         {
             sentences.Enqueue(sentence);
@@ -79,6 +93,10 @@ public class DialogueManager : MonoBehaviour
         {
             dialogueText.color = new Color(0.2f, 0.05f, 0.05f, 1f);
             dialogueText.fontStyle = FontStyle.Normal;
+        } else if (actManager.GetSpeaker(lineNumber, actManager.gameLM) == "Dagon" && actManager.displayedTitleCard)
+        {
+            dialogueText.color = new Color(0.4f, 0.4f, 0.4f, 1f);
+            dialogueText.fontStyle = FontStyle.Normal;
         }
 
         dialogueText.text = sentence;
@@ -97,6 +115,7 @@ public class DialogueManager : MonoBehaviour
         if (recordingManager.isRecording)
         {
             recordingManager.UpdateMeters();
+            actManager.totalStrange += actManager.strangeValue;
         }
         
         CheckIfLastLine();
@@ -137,6 +156,14 @@ public class DialogueManager : MonoBehaviour
         if (currentAct == 3)
         {
             if (actManager.gameDM.lineNumber == 69)
+            {
+                loader.LoadSceneOnLastLine();
+            }
+        }
+
+        if (currentAct == 4)
+        {
+            if (actManager.gameDM.lineNumber == 137)
             {
                 loader.LoadSceneOnLastLine();
             }
@@ -285,6 +312,15 @@ public class DialogueManager : MonoBehaviour
             if (actManager.gameDM.lineNumber == 127)
             {
                 actManager.UpdatePortraitAndName(5);
+            }
+        }
+
+        if (currentAct == 5)
+        {
+             if (actManager.gameDM.lineNumber == 3)
+            {
+                actManager.UpdatePortraitAndName(6);
+                actManager.animatorNPCPortrait.SetBool("isOpen", true);
             }
         }
     }
@@ -479,6 +515,26 @@ public class DialogueManager : MonoBehaviour
                 actManager.EnableGameCanvas();
                 actManager.DisableTitleCard();
                 actManager.animatorNPCPortrait.SetBool("isOpen", true);
+            }
+        }
+
+        if (currentAct == 5)
+        {
+            if (actManager.titleCardDM.lineNumber == 8)
+            {
+                actManager.displayedTitleCard = true;
+                paused = true;
+                DisplayNextSentence();
+                paused = false;
+                actManager.titleCardDM.lineNumber++;
+                actManager.EnableGameCanvas();
+                actManager.gameDM.StartDialogue(actManager.gameLM);
+                actManager.DisableTitleCard();
+            }
+
+            if (actManager.gameDM.lineNumber == 11)
+            {
+                actManager.EnableLastChoiceButtons();
             }
         }
     }

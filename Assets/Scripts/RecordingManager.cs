@@ -51,6 +51,17 @@ public class RecordingManager : MonoBehaviour
 	public void UpdateMeters()
 	{
 		dangerMeterFill.fillAmount += (actManager.suspicionValue / 200f);
+		CheckIfLoseGame();
 		weirdMeter.fillAmount += (actManager.strangeValue / 200f);
+	}
+
+	public void CheckIfLoseGame()
+	{
+		if (dangerMeterFill.fillAmount >= 1)
+		{
+			actManager.LoseGame();
+		}
+
+		return;
 	}
 }

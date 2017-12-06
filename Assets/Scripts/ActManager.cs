@@ -42,11 +42,6 @@ public class ActManager : MonoBehaviour
 	private Text burnText;
 	private Text keepText;
 
-	void Awake()
-	{
-		GameInformation.TotalStrange = 399;
-	}
-
 	// Use this for initialization
 	void Start () 
 	{	

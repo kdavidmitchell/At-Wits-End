@@ -34,7 +34,7 @@ public class RecordingManager : MonoBehaviour
 			{
 				isRecording = false;
 			}
-			filmMeterFill.fillAmount -= 0.001f;
+			filmMeterFill.fillAmount -= 0.0005f;
 		} else 
 		{
 			stopButton.interactable = false;

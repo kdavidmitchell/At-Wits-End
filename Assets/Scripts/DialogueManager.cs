@@ -116,6 +116,7 @@ public class DialogueManager : MonoBehaviour
         {
             recordingManager.UpdateMeters();
             actManager.totalStrange += actManager.strangeValue;
+			actManager.totalSuspicion += actManager.suspicionValue;
         }
         
         CheckIfLastLine();

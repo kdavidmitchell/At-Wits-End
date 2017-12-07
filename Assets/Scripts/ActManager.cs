@@ -30,6 +30,7 @@ public class ActManager : MonoBehaviour
 	public float strangeValue = 0;
 	public float suspicionValue = 0;
 	public float totalStrange = 0;
+	public float totalSuspicion = 0;
 	
 	public Animator animatorRecordingUI;
 	public Animator animatorNPCPortrait;

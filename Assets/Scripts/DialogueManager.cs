@@ -26,6 +26,12 @@ public class DialogueManager : MonoBehaviour
         recordingManager = GameObject.Find("ActManager").GetComponent<RecordingManager>();	
 	}
 
+	void Update(){
+		if (Input.GetMouseButtonDown (0)) {
+			DisplayNextSentence ();
+		}	
+	}
+
     public void StartDialogue(LineManager lineManager)
     {
         animator.SetBool("isOpen", true);
@@ -75,7 +81,7 @@ public class DialogueManager : MonoBehaviour
             dialogueText.fontStyle = FontStyle.Normal;
         } else if (actManager.GetSpeaker(lineNumber, actManager.gameLM) == "Narrator" && actManager.displayedTitleCard)
         {
-            dialogueText.color = Color.black;
+            dialogueText.color = Color.white;
             dialogueText.fontStyle = FontStyle.Italic;
         } else if (actManager.GetSpeaker(lineNumber, actManager.gameLM) == "Ma" && actManager.displayedTitleCard)
         {

@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: d08ab3c6bbdeb2343aa137d45cffcf4c
+timeCreated: 1512858598
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Night Still Comes
+  fontNames:
+  - Night Still Comes
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: c9676bb1e1ec08d42b8bcf330fe48222, type: 3}
+  - {fileID: 12800000, guid: 04eefd52a8b955a4c8f69f006a63f720, type: 3}
+  - {fileID: 12800000, guid: 3bfa1843531b4324c8197248d66fa424, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

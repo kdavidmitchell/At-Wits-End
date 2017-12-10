@@ -77,7 +77,8 @@ public class DialogueManager : MonoBehaviour
             dialogueText.fontStyle = FontStyle.Normal;
         } else if (actManager.GetSpeaker(lineNumber, actManager.gameLM) == "Sam" && actManager.displayedTitleCard)
         {
-            dialogueText.color = Color.blue;
+			//131, 142, 255
+			dialogueText.color = new Color(.513f, .556f, 1f, 1f);
             dialogueText.fontStyle = FontStyle.Normal;
         } else if (actManager.GetSpeaker(lineNumber, actManager.gameLM) == "Narrator" && actManager.displayedTitleCard)
         {

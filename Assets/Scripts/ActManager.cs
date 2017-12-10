@@ -43,12 +43,27 @@ public class ActManager : MonoBehaviour
 	private Text burnText;
 	private Text keepText;
 
+	SoundManagerScript sms;
+
 	// Use this for initialization
 	void Start () 
 	{	
 		recordingManager = GetComponent<RecordingManager>();
 		gameCanvas.enabled = false;
 		titleCardDM.StartDialogue(titleCardLM);
+		sms = FindObjectOfType<SoundManagerScript> ();
+
+		if (gameDM.currentAct == 1) {
+			sms.PlayMusic ("waves");
+		} else if (gameDM.currentAct == 2) {
+			//sms.PlayMusic ("synth");
+		} else if (gameDM.currentAct == 3) {
+			sms.PlayMusic ("synth");
+		} else if (gameDM.currentAct == 4) {
+			//sms.PlayMusic ("synth");
+		} else if (gameDM.currentAct == 5) {
+			sms.PlayMusic ("synth");
+		}
 
 		if (gameDM.currentAct == 5)
 		{

@@ -6,6 +6,8 @@ public class SoundManagerScript : MonoBehaviour {
 
 	AudioSource clickOutSource;
 	AudioSource clickInSource;
+	AudioSource waves;
+	AudioSource bgm;
 
 	void Start () {
 		
@@ -22,6 +24,27 @@ public class SoundManagerScript : MonoBehaviour {
 		Destroy (source);
 	}
 
+	public void PlayMusic(string music){
+		if (bgm == null) {
+			bgm = this.gameObject.AddComponent<AudioSource> ();
+		}
+		switch (music){
+		case "waves":
+			bgm.clip = Resources.Load <AudioClip> ("Sounds/bgm/400632__inspectorj__ambience-seaside-waves-close-a");
+			bgm.loop = true;
+			bgm.volume = .25f;
+			bgm.Play ();
+			break;
+
+		case "synth":
+			bgm.clip = Resources.Load <AudioClip> ("Sounds/bgm/108952__fons__sphere110-70");
+			bgm.loop = true;
+			bgm.volume = .35f;
+			bgm.Play ();
+			break;
+		}
+	}
+
 	public void PlaySound(string soundClip){		
 		switch (soundClip) {
 		case "stopClicked":
@@ -36,6 +59,15 @@ public class SoundManagerScript : MonoBehaviour {
 			clickInSource.clip = Resources.Load <AudioClip> ("Sounds/clickIN");
 			clickInSource.Play ();
 			StartCoroutine(WaitAndDestroy(2f, clickInSource));
+			break;
+
+		case "startWaves":
+			waves = this.gameObject.AddComponent<AudioSource> ();
+			waves.clip = Resources.Load <AudioClip> ("Sounds/bgm/400632__inspectorj__ambience-seaside-waves-close-a");
+			waves.loop = true;
+			waves.volume = .25f;
+			waves.Play ();
+			//StartCoroutine(WaitAndDestroy(2f, clickInSource));
 			break;
 		}
 	}

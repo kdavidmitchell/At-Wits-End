@@ -442,8 +442,11 @@ public class DialogueManager : MonoBehaviour
                 actManager.titleCardDM.lineNumber++;
                 actManager.EnableGameCanvas();
                 actManager.gameDM.StartDialogue(actManager.gameLM);
+                actManager.gameDM.enabled = false;
+                actManager.titleCardDM.enabled = false;
                 actManager.DisableTitleCard();
                 actManager.animatorNPCPortrait.SetBool("isOpen", true);
+                actManager.gameDM.enabled = true;
             }
 
             if (actManager.gameDM.lineNumber == 10)
@@ -454,11 +457,13 @@ public class DialogueManager : MonoBehaviour
                 paused = false;
                 actManager.gameDM.lineNumber++;
                 actManager.EnableTitleCard();
+                actManager.gameDM.enabled = false;
                 actManager.UpdateTitleCardHeader(2);
                 actManager.titleCardDescription.color = Color.white;
                 actManager.titleCardDescription.fontStyle = FontStyle.Normal;
                 actManager.animatorNPCPortrait.SetBool("isOpen", false);
                 actManager.DisableGameCanvas();
+                actManager.titleCardDM.enabled = true;
             }
 
             if (actManager.titleCardDM.lineNumber == 13)
@@ -469,8 +474,10 @@ public class DialogueManager : MonoBehaviour
                 paused = false;
                 actManager.titleCardDM.lineNumber++;
                 actManager.EnableGameCanvas();
+                actManager.titleCardDM.enabled = false;
                 actManager.DisableTitleCard();
                 actManager.animatorNPCPortrait.SetBool("isOpen", true);
+                actManager.gameDM.enabled = true;
             }
 
             if (actManager.gameDM.lineNumber == 46)
@@ -481,19 +488,23 @@ public class DialogueManager : MonoBehaviour
                 paused = false;
                 actManager.gameDM.lineNumber++;
                 actManager.EnableTitleCard();
+                actManager.gameDM.enabled = false;
                 actManager.UpdateTitleCardHeader(3);
                 actManager.titleCardDescription.color = Color.white;
                 actManager.titleCardDescription.fontStyle = FontStyle.Normal;
                 actManager.animatorNPCPortrait.SetBool("isOpen", false);
                 actManager.DisableGameCanvas();
+                actManager.titleCardDM.enabled = true;
             }
 
             if (actManager.titleCardDM.lineNumber == 21)
             {
                 actManager.displayedTitleCard = true;
                 actManager.EnableGameCanvas();
+                actManager.titleCardDM.enabled = false;
                 actManager.DisableTitleCard();
                 actManager.animatorNPCPortrait.SetBool("isOpen", true);
+                actManager.gameDM.enabled = true;
             }
         }
 
@@ -507,9 +518,12 @@ public class DialogueManager : MonoBehaviour
                 paused = false;
                 actManager.titleCardDM.lineNumber++;
                 actManager.EnableGameCanvas();
+                actManager.titleCardDM.enabled = false;
                 actManager.gameDM.StartDialogue(actManager.gameLM);
+                actManager.gameDM.enabled = false;
                 actManager.DisableTitleCard();
                 actManager.animatorNPCPortrait.SetBool("isOpen", true);
+                actManager.gameDM.enabled = true;
             }
 
             if (actManager.gameDM.lineNumber == 60)
@@ -520,11 +534,13 @@ public class DialogueManager : MonoBehaviour
                 paused = false;
                 actManager.gameDM.lineNumber++;
                 actManager.EnableTitleCard();
+                actManager.titleCardDM.enabled = true;
                 actManager.UpdateTitleCardHeader(4);
                 actManager.titleCardDescription.color = Color.white;
                 actManager.titleCardDescription.fontStyle = FontStyle.Normal;
                 actManager.animatorNPCPortrait.SetBool("isOpen", false);
                 actManager.DisableGameCanvas();
+                actManager.gameDM.enabled = false;
             }
 
             if (actManager.titleCardDM.lineNumber == 7)
@@ -535,8 +551,10 @@ public class DialogueManager : MonoBehaviour
                 paused = false;
                 actManager.titleCardDM.lineNumber++;
                 actManager.EnableGameCanvas();
+                actManager.titleCardDM.enabled = false;
                 actManager.DisableTitleCard();
                 actManager.animatorNPCPortrait.SetBool("isOpen", true);
+                actManager.gameDM.enabled = true;
             }
         }
 
@@ -550,8 +568,11 @@ public class DialogueManager : MonoBehaviour
                 paused = false;
                 actManager.titleCardDM.lineNumber++;
                 actManager.EnableGameCanvas();
+                actManager.titleCardDM.enabled = false;
                 actManager.gameDM.StartDialogue(actManager.gameLM);
+                actManager.gameDM.enabled = false;
                 actManager.DisableTitleCard();
+                actManager.gameDM.enabled = true;
             }
 
             if (actManager.gameDM.lineNumber == 11)

@@ -26,8 +26,10 @@ public class DialogueManager : MonoBehaviour
         recordingManager = GameObject.Find("ActManager").GetComponent<RecordingManager>();	
 	}
 
-	void Update(){
-		if (Input.GetMouseButtonDown (0)) {
+	void Update()
+    {
+		if (Input.GetMouseButtonDown (0)) 
+        {
 			DisplayNextSentence ();
 		}	
 	}
@@ -347,6 +349,7 @@ public class DialogueManager : MonoBehaviour
                 actManager.gameDM.StartDialogue(actManager.gameLM);
                 paused = false;
                 actManager.DisableTitleCard();
+                actManager.titleCardDM.enabled = false;
             }
         }
 
@@ -363,8 +366,11 @@ public class DialogueManager : MonoBehaviour
                 actManager.titleCardDM.lineNumber++;
                 actManager.EnableGameCanvas();
                 actManager.gameDM.StartDialogue(actManager.gameLM);
+                actManager.gameDM.enabled = false;
+                actManager.titleCardDM.enabled = false;
                 actManager.DisableTitleCard();
                 actManager.animatorNPCPortrait.SetBool("isOpen", true);
+                actManager.gameDM.enabled = true;
             }
 
             if (actManager.titleCardDM.lineNumber == 12)
@@ -375,7 +381,9 @@ public class DialogueManager : MonoBehaviour
                 paused = false;
                 actManager.titleCardDM.lineNumber++;
                 actManager.EnableGameCanvas();
+                actManager.titleCardDM.enabled = false;
                 actManager.DisableTitleCard();
+                actManager.gameDM.enabled = true;
             }
 
             if (actManager.titleCardDM.lineNumber == 19)
@@ -386,7 +394,9 @@ public class DialogueManager : MonoBehaviour
                 paused = false;
                 actManager.titleCardDM.lineNumber++;
                 actManager.EnableGameCanvas();
+                actManager.titleCardDM.enabled = false;
                 actManager.DisableTitleCard();
+                actManager.gameDM.enabled = true;
             }
 
             if (actManager.gameDM.lineNumber == 19)
@@ -399,7 +409,9 @@ public class DialogueManager : MonoBehaviour
                 actManager.EnableTitleCard();
                 actManager.UpdateTitleCardHeader(0);
                 actManager.titleCardDescription.color = Color.white;
+                actManager.gameDM.enabled = false;
                 actManager.DisableGameCanvas();
+                actManager.titleCardDM.enabled = true;
             }
 
             if (actManager.gameDM.lineNumber == 50)
@@ -412,7 +424,9 @@ public class DialogueManager : MonoBehaviour
                 actManager.EnableTitleCard();
                 actManager.UpdateTitleCardHeader(1);
                 actManager.titleCardDescription.color = Color.white;
+                actManager.gameDM.enabled = false;
                 actManager.DisableGameCanvas();
+                actManager.titleCardDM.enabled = true;
             }
         }
 

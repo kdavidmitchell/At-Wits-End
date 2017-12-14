@@ -36,8 +36,15 @@ public class SoundManagerScript : MonoBehaviour {
 			bgm.Play ();
 			break;
 
-		case "synth":
+		case "fons":
 			bgm.clip = Resources.Load <AudioClip> ("Sounds/bgm/108952__fons__sphere110-70");
+			bgm.loop = true;
+			bgm.volume = .35f;
+			bgm.Play ();
+			break;
+
+		case "poseidon":
+			bgm.clip = Resources.Load <AudioClip> ("Sounds/bgm/259730__toiletrolltube__2183885360d-poseidon");
 			bgm.loop = true;
 			bgm.volume = .35f;
 			bgm.Play ();

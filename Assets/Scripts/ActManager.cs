@@ -42,6 +42,7 @@ public class ActManager : MonoBehaviour
 	private Image keepButton;
 	private Text burnText;
 	private Text keepText;
+	public Canvas helpCanvas;
 
 	SoundManagerScript sms;
 
@@ -52,17 +53,18 @@ public class ActManager : MonoBehaviour
 		gameCanvas.enabled = false;
 		titleCardDM.StartDialogue(titleCardLM);
 		sms = FindObjectOfType<SoundManagerScript> ();
+		helpCanvas.enabled = false;
 
 		if (gameDM.currentAct == 1) {
 			sms.PlayMusic ("waves");
 		} else if (gameDM.currentAct == 2) {
 			//sms.PlayMusic ("synth");
 		} else if (gameDM.currentAct == 3) {
-			sms.PlayMusic ("synth");
+			sms.PlayMusic ("fons");
 		} else if (gameDM.currentAct == 4) {
-			//sms.PlayMusic ("synth");
+			sms.PlayMusic ("fons");
 		} else if (gameDM.currentAct == 5) {
-			sms.PlayMusic ("synth");
+			sms.PlayMusic ("poseidon");
 		}
 
 		if (gameDM.currentAct == 5)
@@ -81,9 +83,24 @@ public class ActManager : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		
+		//Help Canvas Logic
+		if (Input.GetKeyDown (KeyCode.H)) {
+			ShowHelp ();
+		}
 	}
 
+	public void ShowHelp(){
+		if (recordingManager.canRecord) {
+			if (helpCanvas.isActiveAndEnabled) {
+				helpCanvas.enabled = false;
+				gameDM.disableInput = false;
+			} else {
+				helpCanvas.enabled = true;
+				gameDM.disableInput = true;
+
+			}
+		}
+	}
 	public void DisableTitleCard()
 	{
 		titleCard.enabled = false;

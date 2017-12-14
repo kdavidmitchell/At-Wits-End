@@ -11,6 +11,7 @@ public class DialogueManager : MonoBehaviour
     private Queue<string> sentences;
     private bool paused = false;
     public int lineNumber = 0;
+	public bool disableInput = false;
 
     public Text dialogueText;
     public Animator animator;
@@ -30,7 +31,9 @@ public class DialogueManager : MonoBehaviour
     {
 		if (Input.GetMouseButtonDown (0)) 
         {
-			DisplayNextSentence ();
+			if (!disableInput) {
+				DisplayNextSentence ();
+			}
 		}	
 	}
 
@@ -189,6 +192,7 @@ public class DialogueManager : MonoBehaviour
             {
                 actManager.animatorRecordingUI.SetBool("isOpen", true);
                 actManager.EnableRecordingUI();
+				actManager.Invoke ("ShowHelp", 2f);
             }
         }
 

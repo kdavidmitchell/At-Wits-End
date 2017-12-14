@@ -14,6 +14,7 @@ public class RecordingManager : MonoBehaviour
 	public Image weirdMeter;
 	public RectTransform needle;
 	ButtonGlowScript bgs;
+	public DialogueManager gameDM;
 
 	public bool canRecord;
 	public bool isRecording = false;
@@ -37,15 +38,16 @@ public class RecordingManager : MonoBehaviour
 		//new recording logic, check to see if we can record...
 		//then record if right button is clicked
 		if (canRecord) {
-			if (Input.GetMouseButtonDown (1)) {
-				if (isRecording) {
-					isRecording = false;
-					bgs.ChangeInteractableStatus ();
-				} else {
-					isRecording = true;
-					bgs.ChangeInteractableStatus ();
+			if (!gameDM.disableInput) {
+				if (Input.GetMouseButtonDown (1)) {
+					if (isRecording) {
+						isRecording = false;
+						bgs.ChangeInteractableStatus ();
+					} else {
+						isRecording = true;
+						bgs.ChangeInteractableStatus ();
+					}
 				}
-//				Debug.Log (isRecording);
 			}
 		}
 

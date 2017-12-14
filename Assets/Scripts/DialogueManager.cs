@@ -103,7 +103,7 @@ public class DialogueManager : MonoBehaviour
             dialogueText.fontStyle = FontStyle.Normal;
         } else if (actManager.GetSpeaker(lineNumber, actManager.gameLM) == "Douglas" && actManager.displayedTitleCard)
         {
-            dialogueText.color = new Color(0.2f, 0.05f, 0.05f, 1f);
+            dialogueText.color = new Color(0.4f, 0.05f, 0.05f, 1f);
             dialogueText.fontStyle = FontStyle.Normal;
         } else if (actManager.GetSpeaker(lineNumber, actManager.gameLM) == "Dagon" && actManager.displayedTitleCard)
         {
@@ -177,6 +177,22 @@ public class DialogueManager : MonoBehaviour
         if (currentAct == 4)
         {
             if (actManager.gameDM.lineNumber == 137)
+            {
+                loader.LoadSceneOnLastLine();
+            }
+        }
+
+        if (currentAct == 6)
+        {
+            if (actManager.titleCardDM.lineNumber == 22)
+            {
+                loader.LoadSceneOnLastLine();
+            }
+        }
+
+        if (currentAct == 7)
+        {
+            if (actManager.titleCardDM.lineNumber == 10)
             {
                 loader.LoadSceneOnLastLine();
             }

@@ -41,6 +41,14 @@ public class LoadScene : MonoBehaviour
 			GameInformation.TotalStrange += actManager.totalStrange;
 			SaveInformation.SaveAllInformation();
 			SceneManager.LoadScene(5);
+		} else if (actManager.gameDM.currentAct == 6)
+		{
+			SaveInformation.SaveAllInformation();
+			SceneManager.LoadScene(9);
+		} else if (actManager.gameDM.currentAct == 7)
+		{
+			SaveInformation.SaveAllInformation();
+			SceneManager.LoadScene(9);
 		}
 	}
 }
